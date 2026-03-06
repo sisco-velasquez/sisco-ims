@@ -14,10 +14,12 @@ class Product(SQLModel, table=True):
     price:float
     quantity:int
     category:str
+    user_id: int = Field(foreign_key="user.id", index=True)
 
 class Sale(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     product_id: int = Field(foreign_key="product.id")
     quantity_sold: int
     timestamp: datetime = Field(default_factory=datetime.utcnow)
+    user_id: int = Field(foreign_key="user.id", index=True)
     
